@@ -9,12 +9,12 @@ class User(db.Model):
     password = db.Column(db.String(255))
 
     @property
-    def api_keys(self):
+    def api_key(self):
         return APIKey.query.filter_by(user_id=self.id).first()
     
     @property
     def json(self):
         return {
             'id': self.id,
-            'api_key': self.api_keys
+            'api_key': self.api_key
         }
