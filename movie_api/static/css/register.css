@@ -1,0 +1,29 @@
+.container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.card {
+  background-color: #00FFFF;
+}
+
+.help-link {
+  text-decoration: none;
+  color: #808080;
+  margin-right: 5px;
+}
+/* Untuk background box */
+.rounded-box {
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+/* untuk toggel pass */
+.password-toggle-icon {
+  cursor: pointer;
+  position: right;
+  top: 100%;
+  right: 10px;
+}
