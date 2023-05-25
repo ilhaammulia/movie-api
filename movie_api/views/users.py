@@ -9,6 +9,7 @@ from uuid import uuid4
 
 from .. middlewares.authentications import login_required, admin_only
 
+
 mod_auth = Blueprint('mod_auth', __name__, url_prefix='/api/users')
 
 @mod_auth.route('', methods=['GET'])
@@ -23,7 +24,7 @@ def get_users():
 
 @mod_auth.route('', methods=['POST'])
 def create_user():
-    uid = uuid4()
+    uid = str(uuid4())
     username = request.json.get('username')
     password = request.json.get('password')
     if not all([username, password]):
