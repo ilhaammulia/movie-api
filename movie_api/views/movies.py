@@ -2,7 +2,7 @@ from flask import Blueprint, request
 
 from .. import db 
 
-from .. models.movies import Movie, Genre, Company
+from .. models.movies import Movie, Genre
 
 from .. utils import errors
 
