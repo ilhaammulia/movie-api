@@ -43,7 +43,7 @@ class Movie(db.Model):
 class Genre(db.Model):
     __tablename__ = 'genres' 
 
-    id = db.Column(db.String(primarykey=True))
+    id = db.Column(db.String(primary_key=True))
     name = db.Column(db.String)
 
     @property

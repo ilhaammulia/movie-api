@@ -20,7 +20,10 @@ def create_app():
 
   from . views.users import mod_auth
 
+  from . views.movies import mod_movie
+
   app.register_blueprint(mod_auth)
+  app.register_blueprint(mod_movie)
 
 
   with app.app_context():
