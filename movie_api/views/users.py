@@ -40,7 +40,7 @@ def create_user():
         'data': {
             'id': new_user.id
         }
-    }
+    }, 201
 
 @mod_auth.route('/login', methods=['POST'])
 def login():

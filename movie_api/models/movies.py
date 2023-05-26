@@ -40,8 +40,8 @@ class Movie(db.Model):
             'companies': [companie.json for companie in self.companies],
         }
 
-class Genres(db.Model):
-    __tablename__ = genres 
+class Genre(db.Model):
+    __tablename__ = 'genres' 
 
     id = db.Column(db.String(primarykey=True))
     name = db.Column(db.String)
@@ -53,7 +53,7 @@ class Genres(db.Model):
             'name': self.name,
         }
 
-class Companies(db.Model):
+class Company(db.Model):
     __tablename__ = 'companies'
 
     id = db.Column(db.String(primary_key=True))
