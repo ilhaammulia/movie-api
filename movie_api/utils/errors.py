@@ -27,3 +27,8 @@ user_exists = {
     "error": "Username already exists.",
     "data": None
 }
+
+movie_not_found ={
+    "error": "Movie not found",
+    "data": None
+}
