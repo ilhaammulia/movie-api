@@ -1,6 +1,6 @@
 from functools import wraps
 from .. models.api_keys import APIKey
-from flask import redirect, request, url_for
+from flask import request
 from .. utils import errors
 
 def login_required(func):
@@ -19,6 +19,6 @@ def admin_only(func):
         api_key = request.args.get('api_key')
         api_key = APIKey.query.filter_by(key=api_key).first()
         if api_key.user.username != 'admin':
-            return errors.forbidden, 403
+            return errors.forbidden, 200
         return func(*args, **kwargs)
     return is_admin

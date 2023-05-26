@@ -3,9 +3,11 @@ from werkzeug.security import check_password_hash, generate_password_hash
 from .. import db
 
 from .. models.users import User
+from .. models.api_keys import APIKey
 
 from .. utils import errors
 from uuid import uuid4
+import time
 
 from .. middlewares.authentications import login_required, admin_only
 
@@ -50,4 +52,8 @@ def login():
     user = User.query.filter_by(username=username).first()
     if not user or not check_password_hash(user.password, password):
         return errors.user_not_found, 404
+    if not user.api_keys:
+        new_api_key = APIKey(user_id=user.id, key=generate_password_hash(str(time.time()), method='sha256'))
+        db.session.add(new_api_key)
+        db.session.commit()
     return user.json, 200
