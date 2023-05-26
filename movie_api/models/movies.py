@@ -43,35 +43,6 @@ class Movie(db.Model):
             'popularity': self.popularity,
             'synopsis': self.synopsis,
         }
-<<<<<<< HEAD
-
-class Genre(db.Model):
-    __tablename__ = 'genres' 
-
-    id = db.Column(db.String(primary_key=True))
-    name = db.Column(db.String)
-
-    @property
-    def json(self):
-        return {
-            'id': self.id,
-            'name': self.name,
-        }
-
-class Company(db.Model):
-    __tablename__ = 'companies'
-
-    id = db.Column(db.String(primary_key=True))
-    name = db.Column(db.String)
-
-    @property
-    def json(self):
-        return {
-            'id': self.id,
-            'name': self.name,
-        }
-
-=======
     
     @classmethod
     def to_list(cls):
@@ -79,4 +50,3 @@ class Company(db.Model):
         return [
             movie.json for movie in movies
         ]
->>>>>>> 453647ca8653f084eab45186eadc8eebb5d2895c
