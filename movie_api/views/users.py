@@ -44,6 +44,44 @@ def create_user():
         }
     }, 201
 
+@mod_auth.route('/<id>', methods=['PUT'])
+@login_required
+def update_user(id):
+    user = User.query.get(id)
+    username = request.json.get('username')
+    password = request.json.get('password')
+    if not user:
+        return errors.user_not_found, 404
+    if not all([username, password]):
+        return errors.bad_request, 400
+    is_exists = User.query.filter_by(username=username).first()
+    if is_exists and user.id != is_exists.id:
+        return errors.user_exists, 200
+    user.username = username
+    user.password = generate_password_hash(password)
+    db.session.commit()
+    return {
+        'error': None,
+        'data': {
+            'id': user.id
+        }
+    }, 200
+
+@mod_auth.route('/<id>', methods=['DELETE'])
+@login_required
+def delete_user(id):
+    user = User.query.get(id)
+    if not user:
+        return errors.user_not_found, 404
+    db.session.delete(user)
+    db.session.commit()
+    return {
+        'error': None,
+        'data': {
+            'id': user.id
+        }
+    }, 200
+
 @mod_auth.route('/login', methods=['POST'])
 def login():
     username = request.json.get('username')
@@ -51,7 +89,7 @@ def login():
 
     user = User.query.filter_by(username=username).first()
     if not user or not check_password_hash(user.password, password):
-        return errors.user_not_found, 404
+        return errors.login_failed, 401
     if not user.api_keys:
         new_api_key = APIKey(user_id=user.id, key=generate_password_hash(str(time.time()), method='sha256'))
         db.session.add(new_api_key)
