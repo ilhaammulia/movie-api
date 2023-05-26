@@ -3,6 +3,11 @@ user_not_found = {
     "data": None
 }
 
+login_failed = {
+    "error": "Username and Password not matched",
+    "data": None
+}
+
 unauthorized = {
     "error": "Unauthorized",
     "data": None

@@ -1,5 +1,23 @@
 from .. import db 
 from . api_keys import APIKey
+    
+movie_genre = db.Table('movie_genre',
+                       db.Column('movie_id', db.String(255), db.ForeignKey('movies.id')),
+                       db.Column('genre_id', db.String(255), db.ForeignKey('genres.id')),
+                       )
+
+class Genre(db.Model):
+    __tablename__ = 'genres' 
+
+    id = db.Column(db.String, primary_key=True)
+    name = db.Column(db.String)
+
+    @property
+    def json(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+        }
 
 class Movie(db.Model):
     __tablename__ = 'movies'
@@ -8,18 +26,11 @@ class Movie(db.Model):
     title = db.Column(db.String)
     release_date = db.Column(db.Date)
     language = db.Column(db.String)
-    vote_averages = db.Column(db.Float)
-    vote_count = db.Column(db.Integer)
     popularity = db.Column(db.Float)
     synopsis = db.Column(db.Text)
-    budget = db.Column(db.Integer)
-    revenue = db.Column(db.Integer)
-    runtime = db.Column(db.Integer)
-    tagline = db.Column(db.Text)
 
     # relations
-    genres = db.relationship('Genre', backref='movie', lazy=True)
-    companies = db.relationship('Company', backref='movie', lazy=True)
+    genres = db.relationship('Genre', secondary=movie_genre, backref='movie', lazy=True)
 
     @property
     def json(self):
@@ -29,16 +40,10 @@ class Movie(db.Model):
             'release_date': self.release_date,
             'language': self.language,
             'genres': [genre.json for genre in self.genres],
-            'vote_averages': self.vote_averages,
-            'vote_count': self.vote_count,
             'popularity': self.popularity,
             'synopsis': self.synopsis,
-            'budget': self.budget,
-            'revenue': self.revenue,
-            'runtime': self.runtime,
-            'tagline': self.tagline,
-            'companies': [companie.json for companie in self.companies],
         }
+<<<<<<< HEAD
 
 class Genre(db.Model):
     __tablename__ = 'genres' 
@@ -66,3 +71,12 @@ class Company(db.Model):
             'name': self.name,
         }
 
+=======
+    
+    @classmethod
+    def to_list(cls):
+        movies = cls.query.all()
+        return [
+            movie.json for movie in movies
+        ]
+>>>>>>> 453647ca8653f084eab45186eadc8eebb5d2895c

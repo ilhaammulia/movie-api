@@ -10,7 +10,9 @@ class User(db.Model):
 
     @property
     def api_keys(self):
-        return APIKey.query.filter_by(user_id=self.id).all()
+        return [
+            api.key for api in APIKey.query.filter_by(user_id=self.id).all()
+        ]
     
     @property
     def json(self):

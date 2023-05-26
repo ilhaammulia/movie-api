@@ -1,6 +1,6 @@
 from functools import wraps
 from .. models.api_keys import APIKey
-from flask import redirect, request, url_for
+from flask import request
 from .. utils import errors
 
 def login_required(func):

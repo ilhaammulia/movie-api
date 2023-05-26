@@ -6,3 +6,4 @@ class APIKey(db.Model):
     user_id = db.Column(db.String(255), db.ForeignKey('users.id', ondelete='CASCADE'), primary_key=True)
     user = db.relationship('User')
     key = db.Column(db.String(255))
+
