@@ -23,12 +23,17 @@ bad_request = {
     "data": None
 }
 
-user_exists = {
-    "error": "Username already exists.",
+bad_request_form = {
+    "error": "The form cannot be blank",
     "data": None
 }
 
-movie_not_found ={
-    "error": "Movie not found",
+movie_exists = {
+    "error": "Movie title already exists.",
+    "data": None
+}
+
+user_exists = {
+    "error": "Username already exists.",
     "data": None
 }

@@ -19,9 +19,12 @@ def create_app():
   db.init_app(app)
 
   from . views.users import mod_auth
+  from . views.movies import mod_movie
+
   from . views.dashboard import mod_dashboard
 
   app.register_blueprint(mod_auth)
+  app.register_blueprint(mod_movie)
   app.register_blueprint(mod_dashboard)
 
 
