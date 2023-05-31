@@ -1,3 +1,5 @@
+from uuid import uuid4
+
 from .. import db 
 from . api_keys import APIKey
     
@@ -9,7 +11,7 @@ movie_genre = db.Table('movie_genre',
 class Genre(db.Model):
     __tablename__ = 'genres' 
 
-    id = db.Column(db.String, primary_key=True)
+    id = db.Column(db.String, primary_key=True, default=str(uuid4()))
     name = db.Column(db.String)
 
     @property
