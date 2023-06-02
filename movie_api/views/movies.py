@@ -87,6 +87,35 @@ def create_movie():
             }
         }, 201
 
+@mod_movie.route('/<id>', methods=['PUT'])
+@login_required
+@admin_only
+def update_movie(id):
+    movie_id = Movie.query.get(id)
+    title = request.json.get('title')
+    release_date = request.json.get('release_date')
+    language = request.json.get('language')
+    popularity = request.json.get('popularity')
+    synopsis = request.json.get('synopsis')
+    genres = request.json.get('genres')
+
+    if not movie_id:
+        return errors.movie_not_found, 404
+    if not all([movie_id, title, release_date, language, popularity, synopsis, genres]):
+        return errors.bad_request_form, 400
+    
+    movie_id.title = title
+    movie_id.release_date = release_date
+    movie_id.language = language
+    movie_id.popularity = popularity
+    movie_id.synopsis = synopsis
+    movie_id.genres = genres
+    db.session.commit()
+    return {
+        'error': None,
+        'data': movie_id.json
+    }, 200
+
 @mod_movie.route('/<id>', methods=['DELETE'])
 @login_required
 @admin_only
