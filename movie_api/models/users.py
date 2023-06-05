@@ -15,9 +15,14 @@ class User(db.Model):
         ]
     
     @property
+    def api_key(self):
+        return self.api_keys[0] if self.api_keys else ''
+    
+    @property
     def json(self):
         return {
             'id': self.id,
+            'username': self.username,
             'api_key': self.api_keys
         }
     
