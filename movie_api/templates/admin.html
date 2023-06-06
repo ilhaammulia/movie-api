@@ -34,7 +34,7 @@
             <td scope="row">
               API Key
             </td>
-            <td>{{ user.api_keys|length }}</td>
+            <td>{{ user.api_key }}</td>
           </tr>
         </tbody>
     </div>
@@ -48,11 +48,11 @@
           </tr>
         </thead>
         <tbody>
-          {% for key in user.api_keys %}
+          {% for item in users %}
             <tr>
               <td>{{ loop.index }}</td>
-              <td class="align-middle">{{ user.username }}</td>
-              <td class="align-middle">{{ key }}</td>
+              <td class="align-middle">{{ item.username }}</td>
+              <td class="align-middle">{{ item.api_key[0]|default('') }}</td>
             </tr>
           {% endfor %}
         </tbody>
