@@ -7,7 +7,6 @@ import os
 load_dotenv(os.path.join(os.path.dirname(__file__), '.env'))
 db = SQLAlchemy()
 
-
 def create_app():
   global app
 

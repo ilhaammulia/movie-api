@@ -41,7 +41,7 @@ class Movie(db.Model):
             'title': self.title,
             'release_date': self.release_date,
             'language': self.language,
-            'genres': [genre.json for genre in self.genres],
+            'genres': [genre.name for genre in self.genres],
             'popularity': self.popularity,
             'synopsis': self.synopsis,
         }
@@ -50,5 +50,5 @@ class Movie(db.Model):
     def to_list(cls):
         movies = cls.query.all()
         return [
-            movie.json for movie in movies
+            movie.json() for movie in movies
         ]
