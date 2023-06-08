@@ -50,5 +50,5 @@ class Movie(db.Model):
     def to_list(cls):
         movies = cls.query.all()
         return [
-            movie.json() for movie in movies
+            movie.json for movie in movies
         ]

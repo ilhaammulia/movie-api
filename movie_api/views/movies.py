@@ -32,6 +32,7 @@ def get_movie_byid(id):
 
 @mod_movie.route('', methods=['POST'])
 @login_required
+@admin_only
 def create_movie():
     id = str(uuid4())
     title = request.json.get('title')
@@ -44,6 +45,14 @@ def create_movie():
     synopsis = request.json.get('synopsis')    
     genres = request.json.get('genres', [])
 
+    if not all([id, title, release_date, language, popularity, synopsis, genres]):
+        return errors.bad_request_form, 400
+    
+    is_movie_exist = Movie.query.filter_by(title=title).first()
+
+    if is_movie_exist:
+        return errors.movie_exists, 200   
+     
     genre_objects = []
 
     for genre_name in genres:
@@ -57,18 +66,10 @@ def create_movie():
             print('Berhasil menambah genre')
             
             db.session.commit()
-
+            print('berhasil commit')
             genre_objects.append(genre)
         else:
             genre_objects.append(is_genres_exist)
-
-    if not all([id, title, release_date, language, popularity, synopsis, genres]):
-        return errors.bad_request_form, 400
-    
-    is_movie_exist = Movie.query.filter_by(title=title).first()
-
-    if is_movie_exist:
-        return errors.movie_exists, 200    
 
     new_movie = Movie(id=id, title=title, release_date=release_date, language=language, popularity=popularity, synopsis=synopsis, genres=genre_objects)
 
@@ -84,7 +85,7 @@ def create_movie():
                 "language":language,
                 "popularity":popularity,
                 "synopsis":synopsis,
-                "genres":genre_objects,
+                "genres":[genre.name for genre in genre_objects],
             }
         }, 201
 
@@ -106,11 +107,12 @@ def update_movie(id):
         return errors.bad_request_form, 400
     
     movie_id.title = title
-    movie_id.release_date = release_date
+    movie_id.release_date = datetime.strptime(release_date, "%Y-%m-%d").date()
     movie_id.language = language
     movie_id.popularity = popularity
     movie_id.synopsis = synopsis
     movie_id.genres.clear()
+    db.session.commit()
     for genre_name in genres:
         genre = Genre.query.filter_by(name=genre_name).first()
         if not genre:
