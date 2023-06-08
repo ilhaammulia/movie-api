@@ -110,7 +110,12 @@ def update_movie(id):
     movie_id.language = language
     movie_id.popularity = popularity
     movie_id.synopsis = synopsis
-    movie_id.genres = genres
+    movie_id.genres.clear()
+    for genre_name in genres:
+        genre = Genre.query.filter_by(name=genre_name).first()
+        if not genre:
+            genre = Genre(name=genre_name)
+        movie_id.genres.append(genre)
     db.session.commit()
     return {
         'error': None,
