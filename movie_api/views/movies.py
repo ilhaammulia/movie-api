@@ -52,42 +52,20 @@ def create_movie():
 
     if is_movie_exist:
         return errors.movie_exists, 200   
-     
-    genre_objects = []
-
+    
+    new_movie = Movie(id=id, title=title, release_date=release_date, language=language, popularity=popularity, synopsis=synopsis)
     for genre_name in genres:
-        is_genres_exist = Genre.query.filter_by(name=genre_name).first()
-
-        print(genre_name)
-        if not is_genres_exist:
+        genre = Genre.query.filter_by(name=genre_name).first()
+        if not genre:
             genre = Genre(name=genre_name)
-            db.session.add(genre)
-
-            print('Berhasil menambah genre')
-            
-            db.session.commit()
-            print('berhasil commit')
-            genre_objects.append(genre)
-        else:
-            genre_objects.append(is_genres_exist)
-
-    new_movie = Movie(id=id, title=title, release_date=release_date, language=language, popularity=popularity, synopsis=synopsis, genres=genre_objects)
-
+        new_movie.genres.append(genre)
     db.session.add(new_movie)
     db.session.commit()
 
     return {
         'error': None,
-        'data': {
-                "id":id,
-                "title":title,
-                "release_date":release_date,
-                "language":language,
-                "popularity":popularity,
-                "synopsis":synopsis,
-                "genres":[genre.name for genre in genre_objects],
-            }
-        }, 201
+        'data': new_movie.json
+    }, 201
 
 @mod_movie.route('/<id>', methods=['PUT'])
 @login_required
