@@ -11,7 +11,7 @@ movie_genre = db.Table('movie_genre',
 class Genre(db.Model):
     __tablename__ = 'genres' 
 
-    id = db.Column(db.String, primary_key=True, default=str(uuid4()))
+    id = db.Column(db.String(255), primary_key=True)
     name = db.Column(db.String)
 
     @property

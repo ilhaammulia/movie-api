@@ -57,8 +57,9 @@ def create_movie():
     for genre_name in genres:
         genre = Genre.query.filter_by(name=genre_name).first()
         if not genre:
-            genre = Genre(name=genre_name)
+            genre = Genre(id=str(uuid4()), name=genre_name)
         new_movie.genres.append(genre)
+
     db.session.add(new_movie)
     db.session.commit()
 
@@ -94,7 +95,7 @@ def update_movie(id):
     for genre_name in genres:
         genre = Genre.query.filter_by(name=genre_name).first()
         if not genre:
-            genre = Genre(name=genre_name)
+            genre = Genre(id=str(uuid4()), name=genre_name)
         movie_id.genres.append(genre)
     db.session.commit()
     return {
