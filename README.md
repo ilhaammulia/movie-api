@@ -13,10 +13,6 @@ Simple Movie API
 | Parameter  | Type     | Description                         |
 | :--------- | :------- | :---------------------------------- |
 | `api_key`  | `string` | **Required**. Your API key          |
-| `title`    | `string` | **Optional**. Title of the movie    |
-| `genre`    | `string` | **Optional**. Genre of the movie    |
-| `language` | `string` | **Optional**. Language of the movie |
-| `company`  | `string` | **Optional**. Company of the movie  |
 
 **Response:**
 
@@ -30,30 +26,9 @@ Simple Movie API
                 "title": "The Pope's Exorcist",
                 "release_date": "2023-04-05",
                 "language": "English",
-                "genres": [
-                    {
-                        "id": "horror",
-                        "name": "Horror"
-                    },
-                    {
-                        "id": "mystery",
-                        "name": "Mystery"
-                    }
-                ],
-                "vote_average": 7.4,
-                "vote_count": 619,
+                "genres": ["Action", "Horror"],
                 "popularity": 5089.969,
                 "synopsis": "Father Gabriele Amorth, Chief Exorcist of the Vatican, investigates a young boy's terrifying possession and ends up uncovering a centuries-old conspiracy the Vatican has desperately tried to keep hidden.",
-                "budget": 18000000,
-                "revenue": 65675816,
-                "runtime": 103,
-                "tagline": "Inspired by the actual files of Father Gabriele Amorth, Chief Exorcist of the Vatican.",
-                "companies": [
-                    {
-                        "id": "0003eaed-73a2-495a-a180-f830923bfd09",
-                        "name": "SSS Entertainment"
-                    }
-                ]
             }
         ]
     }
@@ -94,30 +69,9 @@ Simple Movie API
             "title": "The Pope's Exorcist",
             "release_date": "2023-04-05",
             "language": "English",
-            "genres": [
-                {
-                    "id": "horror",
-                    "name": "Horror"
-                },
-                {
-                    "id": "mystery",
-                    "name": "Mystery"
-                }
-            ],
-            "vote_average": 7.4,
-            "vote_count": 619,
+            "genres": ["Action", "Horror"],
             "popularity": 5089.969,
             "synopsis": "Father Gabriele Amorth, Chief Exorcist of the Vatican, investigates a young boy's terrifying possession and ends up uncovering a centuries-old conspiracy the Vatican has desperately tried to keep hidden.",
-            "budget": 18000000,
-            "revenue": 65675816,
-            "runtime": 103,
-            "tagline": "Inspired by the actual files of Father Gabriele Amorth, Chief Exorcist of the Vatican.",
-            "companies": [
-                {
-                    "id": "0003eaed-73a2-495a-a180-f830923bfd09",
-                    "name": "SSS Entertainment"
-                }
-            ]
         }
     }
 
@@ -148,30 +102,13 @@ Simple Movie API
 **Body:**
 
     {
-            "id": "214b535b-2683-40cd-aaa2-2bb4879eec3f",
-            "title": "The Pope's Exorcist",
-            "release_date": "2023-04-05",
-            "language": "English",
-            "genres": [
-                {
-                    "id": "horror",
-                    "name": "Horror"
-                },
-                {
-                    "id": "mystery",
-                    "name": "Mystery"
-                }
-            ],
-            "vote_average": 7.4,
-            "vote_count": 619,
-            "popularity": 5089.969,
-            "synopsis": "Father Gabriele Amorth, Chief Exorcist of the Vatican, investigates a young boy's terrifying possession and ends up uncovering a centuries-old conspiracy the Vatican has desperately tried to keep hidden.",
-            "budget": 18000000,
-            "revenue": 65675816,
-            "runtime": 103,
-            "tagline": "Inspired by the actual files of Father Gabriele Amorth, Chief Exorcist of the Vatican.",
-            "companies": ["SSS Entertainment", "21 Laps Entertainment"]
-        }
+        "title": "The Pope's Exorcist",
+        "release_date": "2023-04-05",
+        "language": "English",
+        "genres": ["Action", "Horror"],
+        "popularity": 5089.969,
+        "synopsis": "Father Gabriele Amorth, Chief Exorcist of the Vatican, investigates a young boy's terrifying possession and ends up uncovering a centuries-old conspiracy the Vatican has desperately tried to keep hidden.",
+    }
 
 **Response:**
 
@@ -179,33 +116,15 @@ Simple Movie API
 
     {
         "error": null,
-        "data": [
-            {
-                "id": "214b535b-2683-40cd-aaa2-2bb4879eec3f",
-                "title": "The Pope's Exorcist",
-                "release_date": "2023-04-05",
-                "language": "English",
-                "genres": ["Horror", "Mystery"]
-                "vote_average": 7.4,
-                "vote_count": 619,
-                "popularity": 5089.969,
-                "synopsis": "Father Gabriele Amorth, Chief Exorcist of the Vatican, investigates a young boy's terrifying possession and ends up uncovering a centuries-old conspiracy the Vatican has desperately tried to keep hidden.",
-                "budget": 18000000,
-                "revenue": 65675816,
-                "runtime": 103,
-                "tagline": "Inspired by the actual files of Father Gabriele Amorth, Chief Exorcist of the Vatican.",
-                "companies": [
-                    {
-                        "id": "0003eaed-73a2-495a-a180-f830923bfd09",
-                        "name": "SSS Entertainment"
-                    },
-                    {
-                        "id": "027e4568-eb70-468b-a687-107e0aacb73f",
-                        "name": "21 Laps Entertainment"
-                    }
-                ]
-            }
-        ]
+        "data": {
+            "id": "214b535b-2683-40cd-aaa2-2bb4879eec3f",
+            "title": "The Pope's Exorcist",
+            "release_date": "2023-04-05",
+            "language": "English",
+            "genres": ["Action", "Horror"],
+            "popularity": 5089.969,
+            "synopsis": "Father Gabriele Amorth, Chief Exorcist of the Vatican, investigates a young boy's terrifying possession and ends up uncovering a centuries-old conspiracy the Vatican has desperately tried to keep hidden.",
+        }
     }
 
 `401 - Unauthorized`
@@ -229,20 +148,13 @@ Simple Movie API
 **Body:**
 
     {
-            "title": "The Pope's Exorcist",
-            "release_date": "2023-04-05",
-            "language": "English",
-            "genres": ["Horror", "Mystery"],
-            "vote_average": 7.4,
-            "vote_count": 619,
-            "popularity": 5089.969,
-            "synopsis": "Father Gabriele Amorth, Chief Exorcist of the Vatican, investigates a young boy's terrifying possession and ends up uncovering a centuries-old conspiracy the Vatican has desperately tried to keep hidden.",
-            "budget": 18000000,
-            "revenue": 65675816,
-            "runtime": 103,
-            "tagline": "Inspired by the actual files of Father Gabriele Amorth, Chief Exorcist of the Vatican.",
-            "companies": ["SSS Entertainment", "21 Laps Entertainment"]
-        }
+        "title": "The Pope's Exorcist",
+        "release_date": "2023-04-05",
+        "language": "English",
+        "genres": ["Action", "Horror"],
+        "popularity": 5089.969,
+        "synopsis": "Father Gabriele Amorth, Chief Exorcist of the Vatican, investigates a young boy's terrifying possession and ends up uncovering a centuries-old conspiracy the Vatican has desperately tried to keep hidden.",
+    }
 
 **Response:**
 
@@ -250,42 +162,15 @@ Simple Movie API
 
     {
         "error": null,
-        "data": [
-            {
-                "id": "214b535b-2683-40cd-aaa2-2bb4879eec3f",
-                "title": "The Pope's Exorcist",
-                "release_date": "2023-04-05",
-                "language": "English",
-                "genres": [
-                    {
-                        "id": "horror",
-                        "name": "Horror"
-                    },
-                    {
-                        "id": "mystery",
-                        "name": "Mystery"
-                    }
-                ],
-                "vote_average": 7.4,
-                "vote_count": 619,
-                "popularity": 5089.969,
-                "synopsis": "Father Gabriele Amorth, Chief Exorcist of the Vatican, investigates a young boy's terrifying possession and ends up uncovering a centuries-old conspiracy the Vatican has desperately tried to keep hidden.",
-                "budget": 18000000,
-                "revenue": 65675816,
-                "runtime": 103,
-                "tagline": "Inspired by the actual files of Father Gabriele Amorth, Chief Exorcist of the Vatican.",
-                "companies": [
-                    {
-                        "id": "0003eaed-73a2-495a-a180-f830923bfd09",
-                        "name": "SSS Entertainment"
-                    },
-                    {
-                        "id": "027e4568-eb70-468b-a687-107e0aacb73f",
-                        "name": "21 Laps Entertainment"
-                    }
-                ]
-            }
-        ]
+        "data": {
+            "id": "214b535b-2683-40cd-aaa2-2bb4879eec3f",
+            "title": "The Pope's Exorcist",
+            "release_date": "2023-04-05",
+            "language": "English",
+            "genres": ["Action", "Horror"],
+            "popularity": 5089.969,
+            "synopsis": "Father Gabriele Amorth, Chief Exorcist of the Vatican, investigates a young boy's terrifying possession and ends up uncovering a centuries-old conspiracy the Vatican has desperately tried to keep hidden.",
+        }
     }
 
 `401 - Unauthorized`
@@ -390,8 +275,7 @@ Simple Movie API
     {
         "error": null,
         "data": {
-            "id": "24da12f3-80ff-40a6-9ae4-139255e856d6",
-            "api_key": "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08"
+            "id": "24da12f3-80ff-40a6-9ae4-139255e856d6"
         }
     }
 
